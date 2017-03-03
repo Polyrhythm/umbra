@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "umbra", "umbra.vcxproj", "{9F859726-7729-416C-A25F-536C6C14AABB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "geometry", "geometry\geometry.vcxproj", "{AF26B227-44F3-4E9F-A1F2-28E320422C85}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pixelCoords", "pixelCoords\pixelCoords.vcxproj", "{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,22 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Debug|x64.ActiveCfg = Debug|x64
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Debug|x64.Build.0 = Debug|x64
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Debug|x86.ActiveCfg = Debug|Win32
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Debug|x86.Build.0 = Debug|Win32
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Release|x64.ActiveCfg = Release|x64
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Release|x64.Build.0 = Release|x64
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Release|x86.ActiveCfg = Release|Win32
-		{9F859726-7729-416C-A25F-536C6C14AABB}.Release|x86.Build.0 = Release|Win32
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Debug|x64.ActiveCfg = Debug|x64
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Debug|x64.Build.0 = Debug|x64
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Debug|x86.Build.0 = Debug|Win32
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Release|x64.ActiveCfg = Release|x64
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Release|x64.Build.0 = Release|x64
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Release|x86.ActiveCfg = Release|Win32
+		{AF26B227-44F3-4E9F-A1F2-28E320422C85}.Release|x86.Build.0 = Release|Win32
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Debug|x64.ActiveCfg = Debug|x64
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Debug|x64.Build.0 = Debug|x64
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Debug|x86.ActiveCfg = Debug|Win32
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Debug|x86.Build.0 = Debug|Win32
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Release|x64.ActiveCfg = Release|x64
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Release|x64.Build.0 = Release|x64
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Release|x86.ActiveCfg = Release|Win32
+		{C4A9754B-0CA6-405F-AF71-5E4F9831AF58}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
