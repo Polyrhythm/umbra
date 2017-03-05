@@ -28,6 +28,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //[/ignore]
+#ifndef GEOMETRY_H
+#define GEOMETRY_H
+
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
@@ -114,6 +117,11 @@ public:
     T dotProduct(const Vec3<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z;
+    }
+    Vec3& operator += (const Vec3<T>& v)
+    {
+        x += v.x, y += v.y, z += v.z;
+        return *this;
     }
     Vec3& operator /= (const T &r)
     {
@@ -568,3 +576,5 @@ int main(int argc, char **argv)
     return 0;
 }
 #endif
+
+#endif 
