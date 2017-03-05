@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <algorithm>
 #include <fstream>
-#include <cerrno>
+#include <ctime>
 
 #include "Object.h"
 #include "Light.h"
@@ -11,6 +11,8 @@
 #include "Math.h"
 #include "Sphere.h"
 #include "MeshTriangle.h"
+
+int g_totalRays = 0;
 
 bool trace(const Vec3f& orig, const Vec3f& dir,
     const std::vector<std::unique_ptr<Object>>& objects,
@@ -39,6 +41,8 @@ Vec3f castRay(const Vec3f& orig, const Vec3f& dir,
     const Options& options,
     uint32_t depth, bool test = false)
 {
+    g_totalRays++;
+
     if (depth > options.maxDepth) {
         return options.backgroundColour;
     }
@@ -173,7 +177,7 @@ int main()
     std::vector<std::unique_ptr<Object>> objects;
     std::vector<std::unique_ptr<Light>> lights;
 
-    Sphere* sph1 = new Sphere(Vec3f(-1.0f, 0.0f, -12.0f), 2.0f);
+    Sphere* sph1 = new Sphere(Vec3f(3.0f, 0.0f, -12.0f), 2.0f);
     sph1->materialType = DIFFUSE_AND_GLOSSY;
     sph1->diffuseColour = Vec3f(0.6f, 0.7f, 0.8f);
 
@@ -196,14 +200,20 @@ int main()
     lights.push_back(std::unique_ptr<Light>(new Light(Vec3f(30, 50, -12), 1)));
 
     Options options;
-    options.width = 640;
-    options.height = 480;
+    options.width = 4000;
+    options.height = 3000;
     options.fov = 90;
     options.backgroundColour = Vec3f(0.2f, 0.4f, 0.6f);
     options.maxDepth = 5;
     options.bias = 0.00001f;
 
+    std::cout << "Starting render..." << std::endl;
+    std::clock_t start;
+    start = std::clock();
     render(options, objects, lights);
+    std::cout << "Render finished: " <<
+        (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << "ms" << std::endl;
+    std::cout << "Total rays: " << g_totalRays << std::endl;
 
     return 0;
 }
