@@ -119,16 +119,15 @@ Vec3f castRay(const Vec3f& orig, const Vec3f& dir,
                     tNearShadow * tNearShadow < lightDistance2;
                 lightAmt += (1.0f - inShadow) * lights[i]->intensity * LdotN;
                 Vec3f reflectionDirection = Math::reflect(-lightDir, N);
-                specularColour += powf(max(0.f,
-                    -reflectionDirection.dotProduct(dir)),
+                specularColour += powf(max(0.f, -reflectionDirection.dotProduct(dir)),
                     hitObject->specularExponent) * lights[i]->intensity;
             }
+
             hitColour = lightAmt * hitObject->evalDiffuseColour(st) *
                 hitObject->Kd + specularColour * hitObject->Ks;
 
             break;
-        }
-        }
+        }}
     }
 
     return hitColour;
@@ -142,7 +141,23 @@ void render(const Options& options,
     Vec3f* pix = framebuffer;
     float scale = tan(Math::deg2rad(options.fov * 0.5f));
     float imageAspectRatio = options.width / (float)options.height;
-    Vec3f orig(0);
+    Vec3f orig;
+    Matrix44f cameraToWorld;
+
+    // Move the camera up and angle it down
+    Matrix44f translation{1,0,0,0,
+                          0,1,0,0,
+                          0,0,1,0,
+                          0,7,1,1};
+    float rad = Math::deg2rad(-45.0f);
+    float sinTheta = sinf(rad);
+    float cosTheta = cosf(rad);
+    Matrix44f rotation{ 1,0,0,0,
+                        0, cosTheta, sinTheta, 0,
+                        0, -sinTheta, cosTheta, 0,
+                        0,0,0,1 };
+    Matrix44f::multiply(translation, rotation, cameraToWorld);
+    cameraToWorld.multVecMatrix(Vec3f(0), orig);
 
     for (uint32_t j = 0; j < options.height; ++j) {
         for (uint32_t i = 0; i < options.width; ++i) {
@@ -150,7 +165,8 @@ void render(const Options& options,
             float x = (2.0f * (i + 0.5f) / (float)options.width - 1.0f) *
                 imageAspectRatio * scale;
             float y = (1.0f - 2.0f * (j + 0.5f) / (float)options.height) * scale;
-            Vec3f dir = Vec3f(x, y, -1);
+            Vec3f dir;
+            cameraToWorld.multDirMatrix(Vec3f(x, y, -1), dir);
             dir.normalize();
             *(pix++) = castRay(orig, dir, objects, lights, options, 0);
         }

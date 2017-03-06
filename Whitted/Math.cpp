@@ -2,7 +2,7 @@
 #include <algorithm>
 #include "Math.h"
 
-#define PI 3.14159265359
+float Math::PI = 3.14159265359f;
 
 bool Math::solveQuadratic(const float &a, const float &b, const float &c, float &x0, float &x1)
 {
@@ -108,4 +108,16 @@ void Math::fresnel(const Vec3f& I, const Vec3f& N, const float& ior, float& kr)
             ((etai * cosi) + (etat * cost));
         kr = (Rs + Rp * Rp) / 2;
     }
+}
+
+float Math::sphericalTheta(const Vec3f& v)
+{
+    return acos(clamp(v.z, -1.0f, 1.0f));
+}
+
+float Math::sphericalPhi(const Vec3f& v)
+{
+    float p = atan2(v.y, v.x);
+
+    return (p < 0) ? p + 2 * PI : p;
 }

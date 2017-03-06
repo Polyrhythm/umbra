@@ -14,6 +14,8 @@ public:
     void getSurfaceProperties(const Vec3f& P, const Vec3f& I,
         const uint32_t& index, const Vec2f& uv, Vec3f& N, Vec2f& st) const;
 
+    Vec3f evalDiffuseColour(const Vec2f& st) const override;
+
     Vec3f center;
     float radius, radius2;
 };
